@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1437240878718.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2517AA1D",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "kz1599hral",
+        "caption" : "math_df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=math_df&cache_key=kz1599hral",
+        "displayedObservations" : "4",
+        "environment" : "",
+        "object" : "math_df",
+        "totalObservations" : "4",
+        "variables" : "2"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

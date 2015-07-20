@@ -1,0 +1,17 @@
+{
+    "contents" : "library(shiny)\n\nmath_df <- data.frame(n = 1:4, l = c(\"+\", \"-\", \"*\", \"/\"))\nns = 10000\nf.sum <- function(x, y){x + y}\nf.min <- function(x, y){x - y}\nf.mul <- function(x, y){x * y}\nf.div <- function(x, y){ifelse(y != 0, x/y, x)}\n\nshinyServer(function(input, output) {\n\n        normals <- reactive({rnorm(n = ns, mean = 0, sd = input$n_sd)})\n        poissons <- reactive({rpois(n = ns, lambda = input$p_lambda)})\n        uniforms <- reactive({runif(n = ns, min = input$u_min, max = input$u_max)})\n        exponentials <- reactive({rexp(ns, rate = input$e_rate)})\n        \n        x <- reactive({\n                # input$n_mean\n                input$n_sd; input$p_lambda; input$u_min; input$u_max; input$e_rate\n                sample(1:4, 3, replace = FALSE)\n        })\n        \n  output$distributions <- renderPlot({\n          par(mfrow=c(2,2))\n          hist(normals())\n          hist(poissons())\n          hist(uniforms())\n          hist(exponentials())\n  })\n  \n  output$math_transforms <- renderText({ paste(\"New sequence = (((normals\", math_df[math_df==x()[1], 2],\n                                               \"poissons)\", math_df[math_df==x()[2], 2],\n                                               \"uniforms)\", math_df[math_df==x()[3], 2], \"exponentials)\")\n  })\n  \n  output$Benford <- renderPlot({\n          \n          f.ran <- function(a, b, c, d){\n                  \n                  r <- c(f.sum, f.min, f.mul, f.div)[x()]\n                  real <- r[[1]](a, b)\n                  real <- r[[2]](real, c)\n                  real <- r[[3]](real, d)\n          }\n          \n          real <- f.ran(normals(), poissons(), uniforms(), exponentials())\n          real <- real[real != 0 & !is.na(real)]\n          real <- real[sample(x = 1:ns, size = 10000, replace = TRUE)]\n          \n          real <- as.integer(substr(as.character(format(abs(real), scientific = TRUE)), start = 1, stop = 1))\n          \n          bp <- barplot(table(real), \n                        main = \"First digit appearance counts\", \n                        xlab = \"first digit from generated number sequence\",\n                        ylab = \"count\"\n          )\n          lines(x = bp, y = log10(1 + 1/1:9) * ns, col = \"red\", lty = 3, lwd = 5)\n          legend(\"topright\", \"Benford's law first digit distribution\", col = \"red\",\n                 text.col = \"black\", lty = 3, lwd = 4,\n                 merge = TRUE, bg = \"white\")\n  })\n\n})\n                        ",
+    "created" : 1437230470272.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2531840097",
+    "id" : "6690F078",
+    "lastKnownWriteTime" : 1437252979,
+    "path" : "~/Учеба/DataScience/DDP/CP/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

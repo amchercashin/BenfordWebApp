@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Benford's law check on simulated random data\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n#       sliderInput(\"n_mean\",\n#                   \"Normals mean:\",\n#                   min = -1000,\n#                   max = 1000,\n#                   value = 0),\n      sliderInput(\"n_sd\",\n                  \"Normals standart deviation:\",\n                  min = 1,\n                  max = 100,\n                  value = 50),\n      sliderInput(\"p_lambda\",\n                  \"Poissons lambda:\",\n                  min = 1,\n                  max = 10,\n                  value = 5),\n      sliderInput(\"u_min\",\n                  \"Uniforms minimum:\",\n                  min = 0,\n                  max = 9,\n                  value = 0),\n      sliderInput(\"u_max\",\n                  \"Uniforms minimum:\",\n                  min = 10,\n                  max = 20,\n                  value = 10),\n      sliderInput(\"e_rate\",\n                  \"Exponentials rate:\",\n                  min = 1,\n                  max = 10,\n                  value = 3),\n       submitButton()\n    ),    \n    \n\n    # Show a plot of the generated distribution\n    mainPanel(\n      plotOutput(\"distributions\"),\n      p(\"Making numbers sequence using 4 different indicated above distributions with these random chosen arithmetic operations:\"),\n      verbatimTextOutput(\"math_transforms\"),\n      plotOutput(\"Benford\")\n    )\n  )\n))\n",
+    "created" : 1437230469956.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1765700377",
+    "id" : "8A2C4F23",
+    "lastKnownWriteTime" : 1437251856,
+    "path" : "~/Учеба/DataScience/DDP/CP/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
