@@ -1,6 +1,8 @@
 name: Benford
 account: acherkashin
 server: shinyapps.io
-bundleId: 221991
+bundleId: 223036
 url: https://acherkashin.shinyapps.io/Benford
-when: 1437254097.77046
+when: 1437465923.54028
+asMultiple: FALSE
+asStatic: FALSE
