@@ -47,7 +47,7 @@ shinyUI(fluidPage(
                   max = 9,
                   value = 0),
       sliderInput("u_max",
-                  "Uniforms minimum:",
+                  "Uniforms maximum:",
                   min = 10,
                   max = 20,
                   value = 10),

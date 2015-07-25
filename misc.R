@@ -3,7 +3,7 @@ ns = 10000
 normals <- rnorm(n = ns, mean = 0, sd = 1)
 poissons <- rpois(n = ns, lambda = 2)
 uniforms <- runif(n = ns, min = 0, max = 1)
-exponentials <- rexp(ns, rate = 1)
+exponentials <- rexp(ns, rate = 10)
 
 f.sum <- function(x, y){x + y}
 f.min <- function(x, y){x - y}
