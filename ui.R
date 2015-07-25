@@ -20,6 +20,17 @@ shinyUI(fluidPage(
 #                   min = -1000,
 #                   max = 1000,
 #                   value = 0),
+        p("In this section you can play with parameters of 4 different distributions 
+          (you can see their histograms at the right)."),
+        tags$p("Every time you change something:"),
+        tags$ol(
+                tags$li("A new sample of 10 000 numbers for that distribution is generated."), 
+                tags$li("3 random arithmetic operations between this new and 3 other samples are performed 
+                       elementwise with the result of some 10 000 numbers sequence."), 
+                tags$li("Histogram of only first digits of these numbers generated. And you can see how it 
+                        conforms to", tags$a(href="https://en.wikipedia.org/wiki/Benford%27s_law", 
+                                             "Benford's law"))
+        ),
       sliderInput("n_sd",
                   "Normals standart deviation:",
                   min = 1,
@@ -44,8 +55,8 @@ shinyUI(fluidPage(
                   "Exponentials rate:",
                   min = 1,
                   max = 10,
-                  value = 3),
-       submitButton()
+                  value = 3)#,
+       #submitButton()
     ),    
     
 

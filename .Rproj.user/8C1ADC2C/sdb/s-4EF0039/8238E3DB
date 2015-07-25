@@ -1,0 +1,17 @@
+{
+    "contents" : "ns = 10000\n\nnormals <- rnorm(n = ns, mean = 0, sd = 1)\npoissons <- rpois(n = ns, lambda = 2)\nuniforms <- runif(n = ns, min = 0, max = 1)\nexponentials <- rexp(ns, rate = 1)\n\nf.sum <- function(x, y){x + y}\nf.min <- function(x, y){x - y}\nf.mul <- function(x, y){x * y}\nf.div <- function(x, y){ifelse(y != 0, x/y, x)}\n\nx<-0\nf.ran <- function(a, b, c, d){\n        x <<- sample(1:4, 3, replace = FALSE)\n        r <- c(f.sum, f.min, f.mul, f.div)[x]\n        real <- r[[1]](a, b)\n        real <- r[[2]](real, c)\n        real <- r[[3]](real, d)\n}\n\nreal <- f.ran(normals, poissons, uniforms, exponentials)\nmath_df <- data.frame(n = 1:4, l = c(\"+\", \"-\", \"*\", \"/\"))\n\nmath_str <- paste(\"normals\", math_df[math_df==x[1], 2],\n                  \"poissons\", math_df[math_df==x[2], 2],\n                  \"uniforms\", math_df[math_df==x[3], 2], \"exponentials\")\nreal <- real[real != 0 & !is.na(real)]\nreal <- real[sample(x = 1:ns, size = 10000, replace = TRUE)]\n\nreal <- as.integer(substr(as.character(format(abs(real), scientific = TRUE)), start = 1, stop = 1))\n\npar(mfrow=c(1,1))\nbp <- barplot(table(real), \n              main = \"First digit appearance counts\", \n              xlab = \"first digit from generated number sequence\",\n              ylab = \"count\"\n              )\nlines(x = bp, y = log10(1 + 1/1:9) * ns, col = \"red\", lty = 3, lwd = 5)\nlegend(\"topright\", \"Benford's law first digit distribution\", col = \"red\",\n              text.col = \"black\", lty = 3, lwd = 4,\n              merge = TRUE, bg = \"white\")\n\n\npar(mfrow=c(2,2))\nhist(normals)\nhist(poissons)\nhist(uniforms)\nhist(exponentials)\n#t <- benford(real, number.of.digits = 1, sign = \"both\", discrete=TRUE, round=3)\n#plot(t)",
+    "created" : 1437372641031.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4070890567",
+    "id" : "8238E3DB",
+    "lastKnownWriteTime" : 1437371526,
+    "path" : "~/DataScience/DDP/BenfordWebApp/misc.R",
+    "project_path" : "misc.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
